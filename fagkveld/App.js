@@ -5,24 +5,28 @@ import HomeScreen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen';
 import SplashScreen from './screens/SplashScreen';
 
+const MainStack = createStackNavigator({
+    Home: {
+        screen: HomeScreen,
+        mode: 'modal'
+    }
+})
+
 export default createStackNavigator(
     {
-        Home: {
-            screen: HomeScreen,
-            mode: 'modal'
-        },
         Login: {
             screen: LoginScreen,
         },
         Splash: {
             screen: SplashScreen,
             mode: 'modal'
-        }
+        },
+        MainNavigator: { screen: MainStack }
 
     },
     {
         initialRouteName: 'Splash',
-        headerMode: 'none',
-        mode: 'modal'
+        mode: 'modal',
+        headerMode: 'none'
     })
 

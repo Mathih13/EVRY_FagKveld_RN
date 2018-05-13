@@ -1,10 +1,12 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, StatusBar, View} from 'react-native';
 import {Button, Text} from 'native-base'
 import firebase from '../firebase'
 
 export default class LoginScreen extends React.Component {
-
+    static navigationOptions = {
+        header: null,
+    }
 
     async loginWithFacebook() {
         const {type, token} = await Expo.Facebook.logInWithReadPermissionsAsync
@@ -20,6 +22,9 @@ export default class LoginScreen extends React.Component {
     render() {
         return (
             <View style={styles.container}>
+                <StatusBar
+                    barStyle="light-content"
+                />
                 <Button
                     rounded
                     full
