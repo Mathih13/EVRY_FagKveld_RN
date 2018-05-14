@@ -7,13 +7,16 @@ export default class LoginScreen extends React.Component {
 
 
     async loginWithFacebook() {
+        // Get token from facebook by using Expo
         const {type, token} = await Expo.Facebook.logInWithReadPermissionsAsync
             ('1823147287980509', { permissions: ['public_profile'] })
 
         if (type === 'success') {
+            // Pass the credentials on to firebase and sign in
             const credentials = firebase.auth.FacebookAuthProvider.credential(token);
 
-            firebase.auth().signInAndRetrieveDataWithCredential(credentials).catch(error => console.log(error));
+            firebase.auth().signInAndRetrieveDataWithCredential(credentials)
+                .catch(error => console.log(error));
         }
     }
 

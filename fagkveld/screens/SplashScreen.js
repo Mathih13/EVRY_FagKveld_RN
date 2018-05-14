@@ -6,8 +6,9 @@ import firebase from '../firebase'
 export default class SplashScreen extends React.Component {
     componentDidMount() {
         // Listen for an authentication from firebase
-        // Update any new data from Facebook, then move to next screen
+        // Update any new data from any sign-in action, then move to next screen
         firebase.auth().onAuthStateChanged(user => {
+            console.log(user)
             if (user != null) {
                 firebase.database().ref('/users/' + user.uid).set({
                     username: user.displayName,
@@ -17,6 +18,8 @@ export default class SplashScreen extends React.Component {
                     photoURL: user.photoURL,
                 });
                 this.props.navigation.navigate('Home');
+            } else {
+                this.props.navigation.navigate('Login');
             }
         })
     }
